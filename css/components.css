@@ -728,7 +728,10 @@ ul.authors .orcid a:hover { color: var(--ps-wine); text-decoration: underline; }
 /* ---------- Pie (components/footer.tpl) ---------- */
 .pkp_structure_footer_wrapper { background: var(--ps-olive); color: var(--ps-beige); }
 .pkp_structure_footer { max-width: var(--ps-max); margin-inline: auto; padding: clamp(48px, 7vw, 80px) var(--ps-gutter) 28px; }
-.pkp_footer_content { display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); }
+.pkp_footer_content { display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); }
+/* Datos: una fila a todo el ancho, con un filete encima; cada dato en su columna */
+.ps-footer-datos-col { grid-column: 1 / -1; padding-top: clamp(24px, 3vw, 36px); border-top: 1px solid color-mix(in srgb, var(--ps-beige) 22%, transparent); }
+.ps-footer-datos-col .ps-footer-datos { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.5fr) repeat(3, minmax(0, 0.9fr)); gap: 14px 32px; }
 .ps-footer-brand { display: grid; gap: 16px; align-content: start; max-width: 340px; }
 .ps-footer-logo { display: inline-flex; color: inherit; text-decoration: none; }
 .ps-footer-brand p { color: var(--ps-beige); }
@@ -741,5 +744,5 @@ ul.authors .orcid a:hover { color: var(--ps-wine); text-decoration: underline; }
 .ps-footer-datos dd { color: var(--ps-paper); }
 .pkp_brand_footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; margin-top: clamp(40px, 5vw, 64px); padding-top: 20px; border-top: 1px solid color-mix(in srgb, var(--ps-beige) 30%, transparent); font-size: 0.875rem; color: var(--ps-beige); }
 .ps-creditos a { font-weight: 600; }
-@media (max-width: 900px) { .pkp_footer_content { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ps-footer-brand { grid-column: 1 / -1; } }
+@media (max-width: 900px) { .pkp_footer_content { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ps-footer-brand { grid-column: 1 / -1; } .ps-footer-datos-col .ps-footer-datos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .pkp_footer_content { grid-template-columns: minmax(0, 1fr); } }
