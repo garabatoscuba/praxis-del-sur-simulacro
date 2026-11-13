@@ -274,7 +274,8 @@
   .ps-hero-fechas { column-gap: 22px; }
   .ps-hero-fechas dt { font-size: 0.75rem; }
   .ps-hero-fechas dd { font-size: clamp(0.9375rem, 0.5rem + 0.52vw, 1.1875rem); }
-  .ps-hero--foto .ps-actions .ps-btn { min-height: 46px; padding: 10px 20px; font-size: clamp(0.9375rem, 0.5rem + 0.52vw, 1.0625rem); }
+  /* la letra de los botones, como la de «Entrar» en la barra (15 px) */
+  .ps-hero--foto .ps-actions .ps-btn { min-height: 46px; padding: 10px 20px; font-size: 0.9375rem; }
 }
 /* el lema, en una sola línea donde cabe */
 @media (min-width: 1101px) { .ps-hero-lema { white-space: nowrap; } }
