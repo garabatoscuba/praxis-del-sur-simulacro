@@ -269,11 +269,12 @@
     font-size: clamp(0.8125rem, 0.5rem + 0.4vw, 1rem);
   }
   .ps-hero-conv .ps-eyebrow { font-size: clamp(0.8125rem, 0.6rem + 0.25vw, 0.9375rem); white-space: nowrap; }
-  .ps-hero--foto .ps-hero-title { font-size: clamp(1.375rem, 0.75rem + 1.05vw, 1.875rem); text-wrap: balance; }
+  /* la banda, un poco más pequeña (13 nov): fechas y botones del tamaño de lo esencial; el título, un punto por encima */
+  .ps-hero--foto .ps-hero-title { font-size: clamp(1.25rem, 0.7rem + 0.9vw, 1.625rem); text-wrap: balance; }
   .ps-hero-fechas { column-gap: 22px; }
   .ps-hero-fechas dt { font-size: 0.75rem; }
-  .ps-hero-fechas dd { font-size: clamp(1.1875rem, 0.8rem + 0.5vw, 1.3125rem); }
-  .ps-hero--foto .ps-actions .ps-btn { min-height: 50px; padding: 12px 22px; font-size: clamp(1rem, 0.85rem + 0.2vw, 1.125rem); }
+  .ps-hero-fechas dd { font-size: clamp(0.9375rem, 0.5rem + 0.52vw, 1.1875rem); }
+  .ps-hero--foto .ps-actions .ps-btn { min-height: 46px; padding: 10px 20px; font-size: clamp(0.9375rem, 0.5rem + 0.52vw, 1.0625rem); }
 }
 /* el lema, en una sola línea donde cabe */
 @media (min-width: 1101px) { .ps-hero-lema { white-space: nowrap; } }
