@@ -242,21 +242,21 @@
 /* Escala de letra elegida (opción 4 de afinar/letras.html, 13 nov 2026): crece con la pantalla para que en un monitor grande
    no se quede en tamaños de pie de foto. Arriba, el nombre y, como segundo nivel, la convocatoria (antetítulo y título); abajo,
    en una banda negra al 62 % y fina, las fechas y los botones.
-   Cabecera de revista (opción 3 de afinar/cabecera.html): todo centrado, la línea de datos entre dos filetes y, al final,
-   «Revista del CIPS» con el sello del CIPS (la usuaria lo pidió abajo y el bloque más arriba). Desde 761 px; el móvil, en movil.css. */
+   Cabecera de revista: todo centrado, en este orden (pedido por la usuaria): el nombre, «Una revista del CIPS» con el sello,
+   lo esencial, la línea de datos entre dos filetes y la convocatoria. Desde 761 px; el móvil, en movil.css. */
 @media (min-width: 761px) {
   /* el bloque, un poco por encima del centro del cielo (más aire abajo que arriba) */
   .ps-hero-cielo { justify-items: center; text-align: center; padding-bottom: clamp(16px, 5vh, 70px); }
-  /* «Revista del CIPS» con el sello, al final del bloque, debajo de la línea de datos */
+  /* «Una revista del CIPS» con el sello, justo debajo del nombre */
   .ps-hero-marca { display: contents; }
-  .ps-hero-firma { order: 1; gap: 10px; margin: 22px 0 0; font-size: clamp(0.8125rem, 0.55rem + 0.35vw, 1rem); color: #F1ECE0; text-shadow: 0 1px 10px rgb(0 0 0 / 0.45); }
-  .ps-hero-conv { justify-items: center; margin-top: clamp(18px, 2vw, 28px); }
-  .ps-esenciales { justify-content: center; margin-top: 26px; gap: 10px 26px; }
+  .ps-hero-firma { gap: 10px; margin: 16px 0 0; font-size: clamp(0.8125rem, 0.55rem + 0.35vw, 1rem); color: #F1ECE0; text-shadow: 0 1px 10px rgb(0 0 0 / 0.45); }
+  .ps-hero-conv { justify-items: center; margin-top: clamp(22px, 2.4vw, 34px); }
+  .ps-esenciales { justify-content: center; margin-top: 24px; gap: 10px 26px; }
   .ps-esenciales li { gap: 10px; font-size: clamp(0.9375rem, 0.5rem + 0.52vw, 1.1875rem); }
   .ps-esenciales svg { width: 1.45em; height: 1.45em; }
   /* La convocatoria en una banda negra al 62 % de borde a borde, hasta el final de la portada (afinar/fondo.html, 13 nov 2026) */
   .ps-hero.ps-hero--foto .ps-hero-cont { padding-bottom: 0; }
-  .ps-hero-pie { position: relative; isolation: isolate; gap: 14px 28px; padding-block: clamp(16px, 1.6vw, 24px); }
+  .ps-hero-pie { position: relative; isolation: isolate; gap: 14px 28px; padding-block: clamp(24px, 2.4vw, 38px); }
   .ps-hero-pie::before {
     content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw);
     background: rgb(16 13 11 / 0.62); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
@@ -289,7 +289,7 @@
   .ps-hero-logo { width: min(clamp(330px, 50vw, 780px), 88vh); }
   .ps-hero-firma { margin-top: 10px; }
   .ps-hero-cielo { padding-bottom: 20px; }
-  .ps-hero-pie { padding-block: 14px; }
+  .ps-hero-pie { padding-block: 20px; }
   .ps-hero-conv { margin-top: 14px; gap: 6px; }
   .ps-hero--foto .ps-hero-title { font-size: min(clamp(1.75rem, 0.9rem + 1.3vw, 2.375rem), 4.6vh); }
   .ps-esenciales { margin-top: 12px; }

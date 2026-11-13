@@ -34,8 +34,8 @@
   .ps-hero-marca { display: contents; }
   .ps-hero-nombre { justify-self: stretch; display: grid; justify-items: center; }
   .ps-hero-logo { width: min(100%, 460px); }
-  .ps-hero-firma { order: 1; justify-content: center; margin: 12px 0 0; color: #F1ECE0; }
-  .ps-hero-conv { justify-items: center; margin-top: 10px; gap: 6px; }
+  .ps-hero-firma { justify-content: center; margin: 10px 0 0; color: #F1ECE0; }
+  .ps-hero-conv { justify-items: center; margin-top: 14px; gap: 6px; }
   .ps-esenciales { justify-content: center; margin-top: 14px; gap: 6px 16px; }
   .ps-esenciales li { font-size: 0.8125rem; }
   .ps-hero-folio {
