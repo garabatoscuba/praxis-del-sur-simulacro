@@ -739,7 +739,5 @@ ul.authors .orcid a:hover { color: var(--ps-wine); text-decoration: underline; }
 .ps-footer-datos dd { color: var(--ps-paper); }
 .pkp_brand_footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; margin-top: clamp(40px, 5vw, 64px); padding-top: 20px; border-top: 1px solid color-mix(in srgb, var(--ps-beige) 30%, transparent); font-size: 0.875rem; color: var(--ps-beige); }
 .ps-creditos a { font-weight: 600; }
-/* en el simulacro, hueco bajo la última línea del pie para que la pastilla «Simulacro» no la tape */
-@media (max-width: 1100px) { body:has(.ps-simulacro) .pkp_brand_footer { padding-bottom: 56px; } }
 @media (max-width: 900px) { .pkp_footer_content { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ps-footer-brand { grid-column: 1 / -1; } }
 @media (max-width: 520px) { .pkp_footer_content { grid-template-columns: minmax(0, 1fr); } }

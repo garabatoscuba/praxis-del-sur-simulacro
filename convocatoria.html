@@ -253,33 +253,6 @@
 </div>
 
 </div>
-<details class="ps-simulacro">
-  <summary>Simulacro</summary>
-  <div class="ps-simulacro-panel">
-    <p>Web de ejemplo de Praxis del Sur. Artículos, autores y datos ficticios; textos del equipo en borrador.</p>
-    <p>Ver la portada:
-      <a href="index.html">durante la convocatoria</a> ·
-      <a href="inicio-publicada.html">con el primer número</a>
-    </p>
-  </div>
-</details>
-<script>
-// La pastilla taparía la línea de la convocatoria de la portada (en el móvil y en pantallas medianas, donde el texto empieza
-// pegado al borde): se esconde mientras esa línea se ve y la pastilla la pisa. En monitores anchos queda a la vista.
-(function(){
-  var sim = document.querySelector('.ps-simulacro'), acc = document.querySelector('.ps-hero--foto .ps-actions'), cont = document.querySelector('.ps-hero-cont');
-  if (!sim || !acc || !cont || !('IntersectionObserver' in window)) return;
-  var visible = false;
-  function pisa(){
-    var c = cont.getBoundingClientRect(), izq = c.left + parseFloat(getComputedStyle(cont).paddingLeft);
-    return izq < sim.getBoundingClientRect().right + 8;
-  }
-  function poner(){ sim.classList.toggle('is-tapando', visible && pisa()); }
-  new IntersectionObserver(function(e){ visible = e[0].isIntersecting; poner(); }).observe(acc);
-  window.addEventListener('resize', poner);
-})();
-</script>
-
 <script>
 window.PS_CABECERA = { umbral: 80 };
 (function () {
