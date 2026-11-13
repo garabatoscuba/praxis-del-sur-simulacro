@@ -18,17 +18,20 @@
   html:not([data-movil-compacto="no"]) .ps-hero .ps-actions .ps-btn { min-height: 42px; padding: 9px 18px; font-size: 0.9375rem; }
   /* Portada con foto en el móvil: como en el ordenador, todo centrado. Arriba, en el cielo, el nombre, el lema, lo esencial, la
      línea de datos entre filetes y «Revista del CIPS»; abajo, en la banda negra, las fechas y los botones; las dos personas en
-     medio, libres. La foto sube (más calle): mide al menos --ps-foto-min de alto, anclada abajo, para que la banda quepa bajo los
-     pies de las personas. El bloque de arriba se centra entre la barra y el horizonte: el mismo cielo arriba que abajo.
-     Horizonte = alto − 0,352 × alto de la foto (está al 64,8 % de la foto). */
+     medio, libres. La foto va anclada arriba y mide lo justo para que la línea de la calle (el bordillo, al 74,5 % de su alto) toque
+     la banda negra (alto --ps-banda-m): sin calle vacía y con más cielo. El bloque de arriba se centra entre la barra y el horizonte
+     (al 64,8 % de la foto): el mismo cielo arriba que abajo. */
   html .ps-hero.ps-hero--foto {
-    --ps-foto-min: 760px;
-    --ps-horiz-m: calc(100svh - 0.352 * max(100svh, var(--ps-foto-min)));
+    --ps-banda-m: 132px;
+    --ps-foto-alto-m: calc((100svh - var(--ps-banda-m)) / 0.745);
+    --ps-horiz-m: calc(0.648 * var(--ps-foto-alto-m));
     padding: 0;
   }
-  .ps-hero-foto { top: auto; bottom: 0; height: max(100%, var(--ps-foto-min)); object-position: 78% 50%; }
-  .ps-hero-velo { background: linear-gradient(180deg, rgb(22 18 15 / 0.84) 0%, rgb(22 18 15 / 0.7) 30%, rgb(22 18 15 / 0.5) 44%, rgb(22 18 15 / 0.12) 54%,
-    rgb(22 18 15 / 0.06) 62%, rgb(22 18 15 / 0.3) 72%, rgb(22 18 15 / 0.5) 100%); }
+  .ps-hero-foto { top: 0; bottom: auto; height: var(--ps-foto-alto-m); object-position: 78% 50%; }
+  /* el velo, oscuro hasta el título y claro solo justo encima del horizonte (las personas), para que «contextos de crisis» se lea */
+  .ps-hero-velo { background: linear-gradient(180deg, rgb(22 18 15 / 0.84) 0, rgb(22 18 15 / 0.76) calc(var(--ps-horiz-m) * 0.5),
+    rgb(22 18 15 / 0.74) calc(var(--ps-horiz-m) - 60px), rgb(22 18 15 / 0.18) calc(var(--ps-horiz-m) - 12px), rgb(22 18 15 / 0.06) calc(var(--ps-horiz-m) + 20px),
+    rgb(22 18 15 / 0.3) calc(var(--ps-horiz-m) + 110px), rgb(22 18 15 / 0.5) 100%); }
   .ps-hero-cont { grid-template-rows: auto 1fr auto; padding-top: var(--ps-head-h); padding-bottom: 0; }
   .ps-hero-cielo { grid-row: 1; min-height: calc(var(--ps-horiz-m) - var(--ps-head-h)); align-content: center; justify-items: center; text-align: center; padding-block: 6px; }
   .ps-hero-marca { display: contents; }
@@ -50,7 +53,7 @@
     content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw);
     background: rgb(16 13 11 / 0.62); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   }
-  .ps-hero--foto .ps-hero-title { font-size: 1.25rem; }
+  .ps-hero--foto .ps-hero-title { font-size: 1.25rem; text-shadow: 0 1px 12px rgb(0 0 0 / 0.5); }
   .ps-hero-fechas { justify-content: center; }
   .ps-hero-fechas dd { font-size: 1.0625rem; }
   .ps-hero--foto .ps-hero-fechas dd { text-shadow: none; }
@@ -155,4 +158,11 @@
   .ps-esenciales { margin-top: 10px; }
   .ps-hero-folio { margin-top: 10px; }
   .ps-hero-firma { margin-top: 8px; }
+}
+
+@media (max-width: 760px) and (min-height: 740px) {
+  /* móviles altos: hay más cielo entre el título y el horizonte, así que el velo se aclara más despacio (sin franja marcada) */
+  .ps-hero-velo { background: linear-gradient(180deg, rgb(22 18 15 / 0.84) 0, rgb(22 18 15 / 0.76) calc(var(--ps-horiz-m) * 0.5),
+    rgb(22 18 15 / 0.72) calc(var(--ps-horiz-m) - 150px), rgb(22 18 15 / 0.16) calc(var(--ps-horiz-m) - 10px), rgb(22 18 15 / 0.06) calc(var(--ps-horiz-m) + 20px),
+    rgb(22 18 15 / 0.3) calc(var(--ps-horiz-m) + 110px), rgb(22 18 15 / 0.5) 100%); }
 }
