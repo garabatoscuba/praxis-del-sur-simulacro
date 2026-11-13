@@ -299,15 +299,30 @@
   .ps-deco { width: 110vw; right: -45vw; }
 }
 
-/* ---------- Portada impresa dibujada ---------- */
-.ps-cover { container-type: inline-size; width: 100%; aspect-ratio: 1 / 1.414; background: var(--ps-wine); box-shadow: 0 30px 60px -32px rgba(31, 10, 12, 0.6); outline: 1px solid color-mix(in srgb, var(--ps-beige) 30%, transparent); outline-offset: -8px; }
-.ps-cover-in { height: 100%; padding: 9cqi 9cqi 8cqi; display: grid; grid-template-rows: auto minmax(0, 1fr) auto auto; gap: 4cqi; }
+/* ---------- Portada impresa dibujada (cubierta.njk) ----------
+   La foto del Malecón encuadrada para que las dos personas queden al centro (están entre el 62,5 y el 70,5 % del ancho de la foto;
+   en una portada vertical se ve la mitad del ancho, así que la foto va al 83,5 %). Horizonte al 64,8 % del alto: arriba, en el cielo,
+   el volumen, el nombre y el tema; abajo, en la calle, el sello. El velo oscurece arriba y abajo y deja limpio el horizonte. */
+.ps-cover {
+  container-type: inline-size; position: relative; isolation: isolate; overflow: hidden; width: 100%; aspect-ratio: 1 / 1.414;
+  background: #4A4844; box-shadow: 0 30px 60px -32px rgba(31, 10, 12, 0.6);
+  outline: 1px solid color-mix(in srgb, var(--ps-beige) 30%, transparent); outline-offset: -8px;
+}
+/* dentro de un enlace (archivo), sin el subrayado del enlace */
+a:has(> .ps-cover), a.cover { text-decoration: none; }
+.ps-cover-foto { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 83.5% 50%; }
+.ps-cover-velo {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgb(22 18 15 / 0.8) 0%, rgb(22 18 15 / 0.62) 28%, rgb(22 18 15 / 0.3) 44%, rgb(22 18 15 / 0.06) 56%,
+    rgb(22 18 15 / 0.04) 66%, rgb(22 18 15 / 0.3) 78%, rgb(22 18 15 / 0.78) 100%);
+}
+.ps-cover-in { position: relative; height: 100%; padding: 9cqi 9cqi 7.5cqi; display: grid; grid-template-rows: auto auto auto minmax(0, 1fr) auto; }
 .ps-cover-top { display: flex; justify-content: space-between; gap: 8px; padding-bottom: 2.6cqi; border-bottom: 1px solid color-mix(in srgb, var(--ps-beige) 45%, transparent); font-size: 3.6cqi; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ps-beige); }
-.ps-cover-mark { display: grid; place-items: center; min-height: 0; }
-.ps-cover-sym { width: 50cqi; height: auto; max-height: 100%; color: var(--ps-gold); }
-.ps-cover-name { display: grid; justify-items: center; color: var(--ps-paper); }
-.ps-cover-name svg { display: block; width: 74cqi; height: auto; }
-.ps-cover-tema { padding-top: 3cqi; border-top: 1px solid color-mix(in srgb, var(--ps-beige) 45%, transparent); font-family: var(--ps-serif); font-style: italic; font-size: 5cqi; line-height: 1.2; text-align: center; color: var(--ps-beige); }
+.ps-cover-name { margin-top: 10cqi; display: grid; justify-items: center; color: var(--ps-paper); }
+.ps-cover-name svg { display: block; width: 76cqi; height: auto; filter: drop-shadow(0 1px 6px rgb(0 0 0 / 0.25)); }
+.ps-cover-tema { margin: 4cqi auto 0; padding-top: 3cqi; max-width: 70cqi; border-top: 1px solid color-mix(in srgb, var(--ps-beige) 45%, transparent); font-family: var(--ps-serif); font-style: italic; font-size: 5.2cqi; line-height: 1.2; text-align: center; color: #F1ECE0; text-wrap: balance; text-shadow: 0 1px 8px rgb(0 0 0 / 0.35); }
+.ps-cover-sello { grid-row: 5; display: flex; align-items: center; justify-content: center; gap: 2cqi; font-size: 3cqi; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #F1ECE0; }
+.ps-cover-sello svg { width: 4.6cqi; height: 4.6cqi; flex: none; fill: var(--ps-gold); }
 
 /* ---------- Secciones de portada ---------- */
 .ps-sec-head { display: grid; gap: 12px; max-width: 760px; margin-bottom: clamp(28px, 4vw, 48px); }
