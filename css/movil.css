@@ -17,12 +17,12 @@
   html:not([data-movil-compacto="no"]) .ps-hero .ps-actions { margin-top: 22px; gap: 10px; }
   html:not([data-movil-compacto="no"]) .ps-hero .ps-actions .ps-btn { min-height: 42px; padding: 9px 18px; font-size: 0.9375rem; }
   /* Portada con foto en el móvil: como en el ordenador, todo centrado. Arriba, en el cielo, el nombre, el lema, lo esencial, la
-     línea de datos entre filetes y «Revista del CIPS»; abajo, en la banda negra, la convocatoria y los botones; las dos personas en
+     línea de datos entre filetes y «Revista del CIPS»; abajo, en la banda negra, las fechas y los botones; las dos personas en
      medio, libres. La foto sube (más calle): mide al menos --ps-foto-min de alto, anclada abajo, para que la banda quepa bajo los
      pies de las personas. El bloque de arriba se centra entre la barra y el horizonte: el mismo cielo arriba que abajo.
      Horizonte = alto − 0,352 × alto de la foto (está al 64,8 % de la foto). */
   html .ps-hero.ps-hero--foto {
-    --ps-foto-min: 880px;
+    --ps-foto-min: 760px;
     --ps-horiz-m: calc(100svh - 0.352 * max(100svh, var(--ps-foto-min)));
     padding: 0;
   }
@@ -35,7 +35,7 @@
   .ps-hero-nombre { justify-self: stretch; display: grid; justify-items: center; }
   .ps-hero-logo { width: min(100%, 460px); }
   .ps-hero-firma { order: 1; justify-content: center; margin: 12px 0 0; color: #F1ECE0; }
-  .ps-hero-lema { margin-top: 8px; font-size: 1.0625rem; }
+  .ps-hero-conv { justify-items: center; margin-top: 10px; gap: 6px; }
   .ps-esenciales { justify-content: center; margin-top: 14px; gap: 6px 16px; }
   .ps-esenciales li { font-size: 0.8125rem; }
   .ps-hero-folio {
@@ -44,18 +44,17 @@
   }
   /* en el móvil, sin la ciudad, para que quepa en una línea */
   .ps-hero-folio span:nth-of-type(3), .ps-hero-folio i:nth-of-type(3) { display: none; }
-  /* la banda negra al 62 % con la convocatoria, centrada, de borde a borde y hasta abajo */
-  .ps-hero-pie { grid-row: 3; position: relative; isolation: isolate; grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; gap: 0; padding: 24px 0 20px; }
+  /* la banda negra al 62 % con las fechas y los botones, centrada, de borde a borde y hasta abajo */
+  .ps-hero-pie { grid-row: 3; position: relative; isolation: isolate; grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; gap: 0; padding: 18px 0 18px; }
   .ps-hero-pie::before {
     content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw);
     background: rgb(16 13 11 / 0.62); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   }
-  .ps-hero-conv { justify-items: center; }
   .ps-hero--foto .ps-hero-title { font-size: 1.25rem; }
-  .ps-hero-fechas { justify-content: center; margin-top: 12px; }
+  .ps-hero-fechas { justify-content: center; }
   .ps-hero-fechas dd { font-size: 1.0625rem; }
-  .ps-hero--foto :is(.ps-hero-conv .ps-eyebrow, .ps-hero-title, .ps-hero-fechas dd) { text-shadow: none; }
-  html .ps-hero.ps-hero--foto .ps-actions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; width: 100%; margin-top: 14px; justify-self: stretch; }
+  .ps-hero--foto .ps-hero-fechas dd { text-shadow: none; }
+  html .ps-hero.ps-hero--foto .ps-actions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; width: 100%; margin-top: 12px; justify-self: stretch; }
   html .ps-hero.ps-hero--foto .ps-actions .ps-btn { min-height: 44px; padding: 8px 10px; font-size: 0.9375rem; text-align: center; }
   html:not([data-movil-compacto="no"]) .ps-section { padding-block: 44px; }
   html:not([data-movil-compacto="no"]) .ps-sec-head { gap: 10px; margin-bottom: 24px; }
@@ -152,7 +151,7 @@
 @media (max-width: 760px) and (max-height: 680px) {
   /* móviles bajos: el bloque de arriba, más junto y un poco por encima del centro, para no llegar a las cabezas de las personas */
   .ps-hero-cielo { padding-block: 2px 14px; }
-  .ps-hero-lema { margin-top: 6px; }
+  .ps-hero-conv { margin-top: 6px; }
   .ps-esenciales { margin-top: 10px; }
   .ps-hero-folio { margin-top: 10px; }
   .ps-hero-firma { margin-top: 8px; }
