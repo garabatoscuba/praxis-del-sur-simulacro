@@ -168,7 +168,9 @@
   .pkp_search span { position: static; width: auto; height: auto; clip-path: none; }
   .pkp_navigation_user { flex-wrap: wrap; padding-top: 12px; gap: 8px; }
   .pkp_navigation_user .profile a { padding: 8px 4px; }
-  .ps-nav-cta { margin-left: auto; }
+  /* en el menú del móvil, «Entrar» a todo el ancho */
+  .ps-nav-cta { margin-left: 0; width: 100%; }
+  .ps-nav-cta .ps-btn { width: 100%; min-height: 46px; }
 }
 @media (max-width: 760px) { .ps-logo-a-svg { height: 24px; } }
 
