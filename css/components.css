@@ -150,6 +150,12 @@
 .pkp_navigation_user .profile a { display: block; padding: 8px 10px; font-size: 0.9375rem; color: var(--ps-muted); text-decoration: none; }
 .pkp_navigation_user .profile a:hover { color: var(--ps-wine); text-decoration: underline; }
 .ps-nav-cta { margin-left: 6px; }
+/* En el ordenador, el menú (Inicio … Acerca de) va centrado en la barra; la «a» a la izquierda y la lupa y «Entrar» a la derecha */
+@media (min-width: 1081px) {
+  .pkp_head_wrapper { position: relative; }
+  /* centrado con márgenes automáticos (no con translate, que deja medios píxeles y emborrona el subrayado) */
+  .pkp_navigation_primary { position: absolute; inset: 0; width: max-content; height: max-content; margin: auto; }
+}
 
 @media (max-width: 1080px) {
   .pkp_head_wrapper { flex-wrap: wrap; gap: 0; }
@@ -496,11 +502,14 @@ a:has(> .ps-cover), a.cover { text-decoration: none; }
 .ps-toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--ps-line-strong); }
 .ps-toc a { display: block; margin-left: -1px; padding: 7px 14px; border-left: 2px solid transparent; font-size: 0.9688rem; color: var(--ps-muted); text-decoration: none; }
 .ps-toc a:hover { color: var(--ps-wine); border-left-color: var(--ps-wine); }
+/* la sección por la que vas (la marca el script de base.njk) */
+.ps-toc a.is-actual { color: var(--ps-wine); border-left-color: var(--ps-wine); font-weight: 600; }
 @media (max-width: 900px) {
   .ps-with-toc { grid-template-columns: minmax(0, 1fr); }
   .ps-toc { position: static; }
   .ps-toc ol { display: flex; flex-wrap: wrap; gap: 6px; border: 0; }
   .ps-toc a { margin: 0; padding: 6px 12px; border: 1px solid var(--ps-line-strong); border-radius: 999px; font-size: 0.875rem; }
+  .ps-toc a.is-actual { border-color: var(--ps-wine); background: var(--ps-wine); color: var(--ps-paper); font-weight: 600; }
 }
 
 .ps-doc > section, .ps-doc > div { padding-bottom: clamp(32px, 4vw, 48px); margin-bottom: clamp(32px, 4vw, 48px); border-bottom: 1px solid var(--ps-line); }
