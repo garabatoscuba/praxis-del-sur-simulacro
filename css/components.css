@@ -616,39 +616,51 @@ ul.authors .name { display: block; font-family: var(--ps-serif); font-size: 1.35
 ul.authors .affiliation { display: block; color: var(--ps-muted); }
 ul.authors .orcid a { display: inline-flex; align-items: center; gap: 6px; margin-top: 2px; font-size: 0.875rem; color: var(--ps-muted); text-decoration: none; font-variant-numeric: tabular-nums; }
 ul.authors .orcid a:hover { color: var(--ps-wine); text-decoration: underline; }
-/* nombres que llevan a la ficha de autoría */
-.obj_article_summary .authors a, ul.authors .name a { color: inherit; text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 0 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.25s, color 0.2s; }
-.obj_article_summary .authors a:hover, ul.authors .name a:hover, .obj_article_summary .authors a:focus-visible, ul.authors .name a:focus-visible { color: var(--ps-wine); background-size: 100% 1px; }
+/* nombres que abren la ficha de autoría (botones con aspecto de texto) */
+.ps-autor-btn { padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; text-align: inherit;
+  background-image: linear-gradient(currentColor, currentColor); background-size: 0 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.25s, color 0.2s; }
+.ps-autor-btn:hover, .ps-autor-btn:focus-visible { color: var(--ps-wine); background-size: 100% 1px; }
 
-/* ---------- Ficha de autoría (autor.njk) ---------- */
-.ps-autor-head { display: flex; align-items: center; gap: clamp(18px, 3vw, 32px); margin-top: clamp(24px, 3vw, 36px); }
-.ps-autor-inicial { flex: none; display: grid; place-items: center; width: clamp(76px, 9vw, 112px); aspect-ratio: 1; border-radius: 50%; background: var(--ps-wine); color: var(--ps-paper); font-family: var(--ps-serif); font-size: clamp(1.75rem, 1.1rem + 1.6vw, 2.6rem); letter-spacing: 0.02em; }
-.ps-autor-id { display: grid; gap: 6px; min-width: 0; }
-.ps-autor-id .ps-page-title { margin-top: 2px; }
-.ps-autor-afil { font-size: var(--ps-step-1); line-height: 1.4; color: var(--ps-muted); }
-.ps-autor-orcid a { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9375rem; color: var(--ps-muted); text-decoration: none; font-variant-numeric: tabular-nums; }
-.ps-autor-orcid a:hover { color: var(--ps-wine); text-decoration: underline; }
-.ps-autor-cuerpo { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: start; margin-top: clamp(36px, 5vw, 64px); }
-.ps-autor-cuerpo h2 { margin-bottom: 14px; font-family: var(--ps-sans); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ps-olive); }
-.ps-autor-arts ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ps-line); }
-.ps-autor-arts li { display: grid; gap: 8px; padding-block: 22px; border-bottom: 1px solid var(--ps-line); }
-.ps-autor-arts h3 { font-size: clamp(1.3rem, 1.15rem + 0.5vw, 1.55rem); font-weight: 500; line-height: 1.2; }
-.ps-autor-arts h3 a { color: var(--ps-ink); text-decoration: none; }
-.ps-autor-arts h3 a:hover { color: var(--ps-wine); text-decoration: underline; }
-.ps-autor-rol, .ps-autor-co { font-size: 0.9375rem; color: var(--ps-muted); }
-.ps-autor-rol span, .ps-autor-co span { font-weight: 600; color: var(--ps-ink); }
-.ps-autor-co a { color: var(--ps-wine); }
-.ps-autor-lado { display: grid; gap: 32px; padding: clamp(22px, 2.5vw, 32px); background: var(--ps-beige-light); }
-.ps-autor-vacio { font-style: italic; color: var(--ps-muted); }
-.ps-autor-ejes { display: grid; gap: 6px; margin-bottom: 14px; }
-.ps-autor-ejes a { font-weight: 600; color: var(--ps-wine); }
-.ps-autor-kw { display: flex; flex-wrap: wrap; gap: 6px; }
-@media (max-width: 900px) {
-  .ps-autor-cuerpo { grid-template-columns: minmax(0, 1fr); }
-}
+/* ---------- Ficha de autoría: tarjeta que se abre encima (fichas.njk) ---------- */
+.ps-ficha { width: min(560px, calc(100% - 24px)); max-height: min(86vh, 760px); max-height: min(86svh, 760px); margin: auto; padding: 0; border: 0; border-radius: 12px; background: var(--ps-paper); color: var(--ps-ink); box-shadow: 0 30px 80px -24px rgb(31 18 16 / 0.55); overflow: hidden; }
+.ps-ficha::backdrop { background: rgb(31 24 20 / 0.55); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+.ps-ficha[open] { display: flex; animation: ps-ficha-entra 0.28s var(--ps-head-ease) both; }
+@keyframes ps-ficha-entra { from { opacity: 0; transform: translateY(14px) scale(0.98); } }
+.ps-ficha-in { position: relative; overflow-y: auto; overscroll-behavior: contain; width: 100%; padding: clamp(22px, 4vw, 34px); display: grid; gap: 18px; align-content: start; }
+.ps-ficha-cerrar { position: absolute; top: 12px; right: 12px; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ps-muted); cursor: pointer; }
+.ps-ficha-cerrar:hover { background: var(--ps-beige-light); color: var(--ps-ink); }
+.ps-ficha-cerrar svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.ps-ficha-head { display: flex; align-items: center; gap: 18px; padding-right: 36px; }
+.ps-ficha-inicial { flex: none; display: grid; place-items: center; width: 72px; aspect-ratio: 1; border-radius: 50%; background: var(--ps-wine); color: var(--ps-paper); font-family: var(--ps-serif); font-size: 1.75rem; letter-spacing: 0.02em; }
+.ps-ficha-id { display: grid; gap: 4px; min-width: 0; }
+.ps-ficha-eye { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ps-olive); }
+.ps-ficha-nombre { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem); font-weight: 500; line-height: 1.12; }
+.ps-ficha-afil { font-size: 0.9375rem; line-height: 1.4; color: var(--ps-muted); }
+.ps-ficha-bio { line-height: 1.55; color: var(--ps-ink); }
+.ps-ficha-enlaces { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.ps-ficha-enlaces a { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 14px; border: 1px solid var(--ps-line-strong); border-radius: 999px; font-size: 0.875rem; font-weight: 600; color: var(--ps-ink); text-decoration: none; transition: border-color 0.2s, color 0.2s, background-color 0.2s; }
+.ps-ficha-enlaces a:hover { border-color: var(--ps-wine); color: var(--ps-wine); }
+.ps-ficha-enlaces svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ps-ficha-num { font-weight: 400; color: var(--ps-muted); font-variant-numeric: tabular-nums; }
+.ps-ficha-arts h3 { margin-bottom: 4px; font-family: var(--ps-sans); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ps-olive); }
+.ps-ficha-arts ul { list-style: none; margin: 0; padding: 0; }
+.ps-ficha-arts li { display: grid; gap: 4px; padding-block: 14px; border-top: 1px solid var(--ps-line); }
+.ps-ficha-meta { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; color: var(--ps-muted); }
+.ps-ficha-art { font-family: var(--ps-serif); font-size: 1.2rem; line-height: 1.25; color: var(--ps-ink); text-decoration: none; }
+.ps-ficha-art:hover { color: var(--ps-wine); text-decoration: underline; }
+.ps-ficha-rol { font-size: 0.875rem; color: var(--ps-muted); }
+.ps-ficha-rol b { color: var(--ps-ink); }
+.ps-ficha-rol .ps-autor-btn { color: var(--ps-wine); background-size: 100% 1px; }
+.ps-ficha-temas { display: flex; flex-wrap: wrap; gap: 6px; }
+.ps-ficha-temas .ps-kw { font-size: 0.8125rem; }
+.ps-ficha-nota { font-size: 0.8125rem; font-style: italic; color: var(--ps-muted); }
 @media (max-width: 520px) {
-  .ps-autor-head { align-items: flex-start; }
+  /* en el móvil, la tarjeta sube desde abajo */
+  .ps-ficha { width: 100%; max-width: none; margin: auto 0 0; max-height: 88svh; border-radius: 16px 16px 0 0; }
+  .ps-ficha-inicial { width: 60px; font-size: 1.45rem; }
+  @keyframes ps-ficha-entra { from { transform: translateY(40px); opacity: 0; } }
 }
+@media (prefers-reduced-motion: reduce) { .ps-ficha[open] { animation: none; } }
 .ps-orcid-badge { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--ps-olive); color: var(--ps-paper); font-size: 0.625rem; font-weight: 700; }
 .ps-credit { display: block; margin-top: 4px; font-size: 0.875rem; color: var(--ps-olive); }
 .item.abstract p { font-family: var(--ps-serif); font-size: 1.28rem; line-height: 1.55; max-width: 66ch; }
@@ -765,7 +777,8 @@ ul.authors .orcid a:hover { color: var(--ps-wine); text-decoration: underline; }
 .ps-search-form + .ps-form-nota { margin-top: 10px; }
 
 /* ---------- Pie (components/footer.tpl) ---------- */
-.pkp_structure_footer_wrapper { background: var(--ps-olive); color: var(--ps-beige); }
+/* el pie, en el vino del manual del CIPS (la usuaria lo pidió terracota en vez del verde oliva) */
+.pkp_structure_footer_wrapper { background: var(--ps-wine); color: var(--ps-beige); }
 .pkp_structure_footer { max-width: var(--ps-max); margin-inline: auto; padding: clamp(48px, 7vw, 80px) var(--ps-gutter) 28px; }
 .pkp_footer_content { display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); }
 /* Datos: una fila a todo el ancho, con un filete encima; cada dato en su columna */
