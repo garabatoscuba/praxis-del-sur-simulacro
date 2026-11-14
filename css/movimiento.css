@@ -147,9 +147,6 @@ html[data-cal-fase]:not([data-cal-fase="abierta"]) .ps-hero .ps-dot::after { dis
   .pkp_navigation_primary .has_submenu:hover > ul,
   .pkp_navigation_primary .has_submenu:focus-within > ul { animation: ps-asoma 0.26s var(--ps-mov-e); }
 }
-@media (max-width: 1080px) {
-  .pkp_site_nav_menu.is_open { animation: ps-asoma 0.32s var(--ps-mov-e); }
-}
 @keyframes ps-asoma { from { opacity: 0; transform: translateY(-6px); } }
 
 /* ---------- 4. Respuesta al ratón ---------- */

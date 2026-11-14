@@ -30,25 +30,25 @@
       </div>
     </div>
     <nav class="pkp_site_nav_menu" aria-label="Navegación del sitio" id="siteNavMenu">
-      <a id="siteNav"></a>
+      <a id="siteNav"></a><p class="ps-menu-indice" aria-hidden="true">Índice</p>
       <div class="pkp_navigation_primary_row">
         <div class="pkp_navigation_primary_wrapper">
           <ul id="navigationPrimary" class="pkp_navigation_primary pkp_nav_list">
-            <li class="">
-              <a href="index.html">Inicio</a>
+            <li class="" style="--i: 1">
+              <a href="index.html"><span class="ps-menu-t">Inicio</span></a>
             </li>
-            <li class="">
-              <a href="convocatoria.html">Convocatoria</a>
+            <li class="" style="--i: 2">
+              <a href="convocatoria.html"><span class="ps-menu-t">Convocatoria</span></a>
             </li>
-            <li class="has_submenu">
-              <a href="numero.html">Publicaciones</a>
+            <li class="has_submenu" style="--i: 3">
+              <a href="numero.html"><span class="ps-menu-t">Publicaciones</span><span class="ps-menu-nota" aria-hidden="true">2</span></a>
               <ul>
                 <li><a href="numero.html">Número actual</a></li>
                 <li><a href="archivo.html">Archivo</a></li>
               </ul>
             </li>
-            <li class="has_submenu is_current">
-              <a href="acerca.html">Acerca de</a>
+            <li class="has_submenu is_current" style="--i: 4">
+              <a href="acerca.html"><span class="ps-menu-t">Acerca de</span><span class="ps-menu-nota" aria-hidden="true">7</span></a>
               <ul>
                 <li><a href="acerca.html">La revista</a></li>
                 <li><a href="envios.html">Envíos</a></li>
@@ -60,7 +60,7 @@
               </ul>
             </li>
           </ul>
-          <div class="pkp_navigation_search_wrapper">
+          <div class="pkp_navigation_search_wrapper" style="--i: 6">
             <a href="buscar.html" class="pkp_search pkp_search_desktop">
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               <span>Buscar</span>
@@ -68,7 +68,8 @@
           </div>
         </div>
       </div>
-      <div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
+      <p class="ps-menu-folio" aria-hidden="true" style="--i: 5">e-ISSN 0000-0000 · Vol. 1 (2027)</p>
+      <div class="pkp_navigation_user_wrapper" id="navigationUserWrapper" style="--i: 6">
         <ul id="navigationUser" class="pkp_navigation_user pkp_nav_list"><li class="ps-nav-cta"><a class="ps-btn ps-btn--wine ps-btn--small" href="acceso.html">Entrar</a></li>
         </ul>
       </div>
@@ -241,12 +242,23 @@ window.PS_CABECERA = { umbral: 80 };
   var toggle = document.querySelector('.pkp_site_nav_toggle');
   var menu = document.getElementById('siteNavMenu');
   if (toggle && menu) {
-    toggle.addEventListener('click', function () {
-      menuAbierto = menu.classList.toggle('is_open');
-      toggle.setAttribute('aria-expanded', menuAbierto ? 'true' : 'false');
-      toggle.querySelector('span').textContent = menuAbierto ? 'Cerrar' : 'Menú';
+    // el menú del móvil se abre en círculo desde la hamburguesa
+    var ponerMenu = function (abrir) {
+      var r = toggle.getBoundingClientRect();
+      menu.style.setProperty('--menu-x', Math.round(r.left + r.width / 2) + 'px');
+      menu.style.setProperty('--menu-y', Math.round(r.top + r.height / 2) + 'px');
+      menuAbierto = abrir;
+      menu.classList.toggle('is_open', abrir);
+      head.classList.toggle('ps-menu-abierto', abrir);
+      document.documentElement.classList.toggle('ps-menu-abierto', abrir);
+      toggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      toggle.querySelector('span').textContent = abrir ? 'Cerrar' : 'Menú';
       cabecera();
-    });
+    };
+    toggle.addEventListener('click', function () { ponerMenu(!menuAbierto); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menuAbierto) { ponerMenu(false); toggle.focus(); } });
+    // si se agranda la ventana con el menú abierto, se cierra
+    window.matchMedia('(min-width: 1081px)').addEventListener('change', function (m) { if (m.matches && menuAbierto) ponerMenu(false); });
   }
   function select(el) {
     var range = document.createRange(); range.selectNodeContents(el);
