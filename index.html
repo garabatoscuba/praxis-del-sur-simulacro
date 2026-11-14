@@ -56,6 +56,19 @@
   // a los 300 ms entra la portada; a los 1150 se quita la pantalla y, cuando acaba el acercamiento de la foto, todo vuelve a ser normal.
   var ARRANCA = 250, LINEA_RETRASO = 200, LINEA_DUR = 3000, CURVA = 'cubic-bezier(.42,0,.32,1)', MAX = 9000;
 
+  // Mientras la pantalla está cerrada, la página no se desplaza (sin tocar la barra de desplazamiento: ver movimiento.css).
+  var cerrada = function () { return root.classList.contains('ps-cargando') && !root.classList.contains('ps-carga-abre'); };
+  var frenar = function (e) { if (cerrada()) e.preventDefault(); };
+  var teclas = function (e) { if (cerrada() && /^(ArrowDown|ArrowUp|PageDown|PageUp|Home|End| )$/.test(e.key)) e.preventDefault(); };
+  window.addEventListener('wheel', frenar, { passive: false });
+  window.addEventListener('touchmove', frenar, { passive: false });
+  window.addEventListener('keydown', teclas);
+  var soltar = function () {
+    window.removeEventListener('wheel', frenar, { passive: false });
+    window.removeEventListener('touchmove', frenar, { passive: false });
+    window.removeEventListener('keydown', teclas);
+  };
+
   // La foto de la portada: la línea no llega al borde hasta que esté (como mucho, MAX).
   function vigilarFoto() {
     var img = document.querySelector('.ps-hero-foto');
@@ -70,6 +83,7 @@
     if (abierta) return; abierta = true;
     capa.classList.add('abre');
     root.classList.add('ps-carga-abre');
+    soltar();
     setTimeout(window.__psCargaLista, 300);
     setTimeout(function () { capa.classList.add('fin'); }, 1150);
     setTimeout(window.__psCargaFin, 300 + 1700);
