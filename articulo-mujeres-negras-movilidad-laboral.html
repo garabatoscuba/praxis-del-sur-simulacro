@@ -773,6 +773,8 @@ window.PS_CABECERA = { umbral: 80 };
   var todos = Array.prototype.slice.call(document.querySelectorAll(SEL)).filter(function (el) {
     // la línea de la convocatoria de la portada con foto va pegada al borde de abajo de la pantalla, adonde no llega la aparición:
     // sin animación, siempre a la vista
+    // en el móvil, lo esencial pasa de uno en uno (movil.njk): sin aparición propia
+    if (el.matches('.ps-esenciales > li') && window.matchMedia('(max-width: 760px)').matches) return false;
     return !el.closest('.pkp_structure_head, .ps-simulacro, .ps-hero-pie') && !el.classList.contains('pkp_screen_reader');
   });
   // Si un bloque contiene otros que también aparecen, se animan los de dentro (en cascada) y no el de fuera.
